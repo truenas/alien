@@ -1,4 +1,4 @@
-alien (8.95.1) unstable; urgency=medium
+alien (8.95.1) experimental; urgency=medium
 
   * QA upload.
   * Rebuild source and binary package.
@@ -7,8 +7,12 @@ alien (8.95.1) unstable; urgency=medium
     + Bump Standards-Version to 4.5.0.
     + Update Vcs-* fields to use git packaging repo under Salsa
       Debian group.
+  * Rpm.pm: Do not ship conflicting dirs. (Closes: #759533)
+  * Deb.pm:
+    + Use dh sequencer when generating deb packages.
+    + Bump supported debhelper compatibility level to v10.
 
- -- Boyuan Yang <byang@debian.org>  Sat, 28 Mar 2020 23:41:15 -0400
+ -- Boyuan Yang <byang@debian.org>  Tue, 31 Mar 2020 10:52:19 -0400
 
 alien (8.95) unstable; urgency=medium
 
