@@ -1,3 +1,9 @@
+alien (8.95.4) UNRELEASED; urgency=high
+
+  * Fix rules generated for debs
+
+ -- Ryan Moeller <ryan@iXsystems.com>  Mon, 22 Mar 2021 11:00:00 -0500
+
 alien (8.95.3) UNRELEASED; urgency=medium
 
   * Remove constraints unnecessary since stretch:
