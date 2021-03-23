@@ -1,4 +1,4 @@
-Source: alien
+Source: alienz
 Section: admin
 Priority: optional
 Build-Depends: debhelper-compat (= 13)
@@ -6,10 +6,10 @@ Maintainer: Debian QA Group <packages@qa.debian.org>
 Standards-Version: 4.5.0
 Rules-Requires-Root: no
 Vcs-Git: https://salsa.debian.org/debian/alien.git
-Vcs-Browser: https://salsa.debian.org/debian/alien
+Vcs-Browser: https://salsa.debian.org/freqlabs/alien
 Homepage: http://kitenet.net/~joey/code/alien/
 
-Package: alien
+Package: alienz
 Architecture: all
 Depends: debhelper,
          ${misc:Depends},
