@@ -459,7 +459,7 @@ sub prep {
 
 	# Use debhelper v7
 	open (OUT, ">$dir/debian/compat") || die "$dir/debian/compat: $!";
-	print OUT "10\n";
+	print OUT "7\n";
 	close OUT;
 
 	# A minimal rules file.
@@ -471,35 +471,48 @@ sub prep {
 
 PACKAGE=\$(shell dh_listpackages)
 
-%:
-	dh $@
+build:
+	dh_testdir
 
-override_dh_clean:
+clean:
+	dh_testdir
+	dh_testroot
 	dh_clean -d
 
-override_dh_auto_configure:
+binary-indep: build
 
-override_dh_auto_build:
+binary-arch: build
+	dh_testdir
+	dh_testroot
+	dh_prep
+	dh_installdirs
 
-override_dh_auto_install:
-	# Copy the packages's files.
+	dh_installdocs
+	dh_installchangelogs
+
+# Copy the packages's files.
 	find . -maxdepth 1 -mindepth 1 -not -name debian -print0 | \\
 		xargs -0 -r -i cp -a {} debian/\$(PACKAGE)
+
 #
 # If you need to move files around in debian/\$(PACKAGE) or do some
 # binary patching, do it here
 #
 
-override_dh_strip:
+
 # This has been known to break on some wacky binaries.
-	#	dh_strip
-
-override_dh_fixperms:
+#	dh_strip
+	dh_compress
 $fixpermscomment	dh_fixperms
-
-override_dh_shlibdeps:
+	dh_makeshlibs
+	dh_installdeb
 	-dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
 
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary
 EOF
 	close OUT;
 	$this->do("chmod", 755, "$dir/debian/rules");
